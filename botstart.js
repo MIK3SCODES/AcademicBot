@@ -7,8 +7,8 @@ app.use(express.urlencoded({extended: true}))
 app.set('view engine', "ejs");
 
 app.get('/', function (req, res) {
-    res.send('welcome html page')
-  })  
+    res.render('Welcome')
+})  
 
  const userRouter = require('./Routes/Post') 
 

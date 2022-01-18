@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Make Twitter Post</h2>
+
+<form action="/Post/Preview/" method="POST">
+      <label for="Img">Enter image location:</label><br>
+  <input type="text" name="Location" value= "<%= locals.Location %>"><br>
+      <label for="caption">Last name:</label><br>
+  <input type="text" name="caption" value= "<%= locals.caption %>">
+    <input type="submit" value="Submit">
+</form>
+
+<p>This form will enter text to node js</p>
+  
+
+</body>
+</html>

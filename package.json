@@ -1,0 +1,21 @@
+{
+  "name": "npm_demo",
+  "version": "1.0.0",
+  "description": "testing",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon botstart.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "mfinesse",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "twit": "^2.2.11"
+  },
+  "devDependencies": {
+    "ejs": "^3.1.6",
+    "nodemon": "^2.0.15"
+  }
+}

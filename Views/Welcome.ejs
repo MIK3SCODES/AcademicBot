@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
 <style>
-body, html {
-  height: 100%;
-  margin: 0;
+button {
+  padding: 15px 25px;
+  cursor: pointer;
+  text-align: center;
+  color: rgb(63, 10, 209);
+  background-color: #4f0fe4;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
 }
 
-.welcome {
-  height: 100%;
-  background-position: center;
-  background-size: cover;
-  position: relative;
-  color: rgb(71, 31, 247);
-  font-family: "Courier New", Courier, monospace;
-  font-size: 25px;
-}
+.button:hover {background-color: #33d3f0}
 
+.button:active {
+  background-color: #33d3f0;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 
 
 .middle {
@@ -26,21 +28,33 @@ body, html {
   transform: translate(-50%, -50%);
   text-align: center;
 }
-
-hr {
-  margin: auto;
-  width: 40%;
+h1 {
+  font-size: 60px;
 }
+hr {
+  background-color: rgb(0, 0, 0);
+  height: 3px;
+  margin: auto;
+  width: 70%;
+}
+
+body {
+    background: linear-gradient(to right, transparent, mistyrose),  rgb(64, 43, 255);  
+    height: 100%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 </style>
 <body>
-
-<div class="welcome">
+<form action="/Post" method="get">
   <div class="middle">
-    <h1>Academic Twiiter Bot</h1>
+    <h1>Academic Twitter Bot</h1>
     <hr>
-    <p>Press the button to continue</p>
+    <p id="demo">  </p>
+    <input class="button" type="submit" value="Press the button to continue">
   </div>
-</div>
-
+</form>
+ 
 </body>
 </html>
+

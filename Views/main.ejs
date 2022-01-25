@@ -18,27 +18,45 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
+    <tr onclick="Load(this)">
       <th scope="row">1</th>
       <td> Raphael Mosaner, David Leopoldseder, Manuel Rigger, Roland Schatz, Hanspeter Mössenböck  </td>
       <td>Virtual Machines</td>
       <td> 
 Supporting on-stack replacement in unstructured languages by loop Reconstruction and Extraction</td>
     </tr>
-    <tr>
+    <tr onclick="Load(this)">
       <th scope="row">2</th>
       <td>Fabio Niephaus, Tim Felgentreff, Robert Hirschfeld</td>
       <td>Virtual Machines</td>
       <td>GraalSqueak: toward a smalltalk-based tooling platform for polyglot programming</td>
     </tr>
-    <tr>
-      <th scope="row">3</th>
+    <tr onclick="Load(this)">
+     <th scope="row">3</th>
       <td>Robbert Gurdeep Singh, Christophe Scholliers</td>
       <td>Virtual Machines</td>
       <td>WARDuino: a dynamic WebAssembly virtual machine for programming microcontrollers</td>
     </tr>
     </tbody>
 </table>
+
+<form action="/action_page.php">
+    <label for="Title">Title:</label><br>
+    <label for="Link">Link:</label><br>
+    <label for="Author">Author:</label><br>
+    <label for="Published">Published:</label><br>
+    <label for="PDF Link">PDF Link:</label><br>
+     <label for="Total Downloads">Total Downloads:</label><br>
+    <label for="Citations">Last name:</label><br>
+    <input type="submit" value="View Tweet Preview">
+  </form>
 </body>
+<script>
+    const n = 0 ;
+    function Load(x) {
+        n = x.rowIndex;
+      alert("Row index is: " & n );
+    }
+</script>
 
 </html>

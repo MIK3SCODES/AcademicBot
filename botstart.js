@@ -13,5 +13,3 @@ app.get('/', function (req, res) {
  const userRouter = require('./Routes/Post') 
 
  app.use("/Post", userRouter) 
-
-

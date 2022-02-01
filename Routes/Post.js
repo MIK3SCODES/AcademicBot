@@ -9,7 +9,7 @@ router.get('/', function (req, res) {
   })
 
   router.get('/preview', function (req, res) {
-    res.send('load tweet preview')
+    res.render('preview.ejs')
   })  
    
   router.post('/preview', function (req, res) {

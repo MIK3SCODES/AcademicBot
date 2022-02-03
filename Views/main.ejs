@@ -48,21 +48,21 @@ Supporting on-stack replacement in unstructured languages by loop Reconstruction
     </tbody>
 </table>
 
-<form id="myForm" action="/Post/preview" method="get"> 
-    Title:<input type="text" id="Title" value= "<%= locals.Title %>"><br>
-    Link:<input type="text" id="Link" value= "<%= locals.Link %>"><br>
-    Author:<input type="text" id="Author" value= "<%= locals.Author %>"><br>
-    Published:<input type="text" id="Published" value= "<%= locals.Published %>"><br>
-    PDF Link:<input type="text" id="PDF Link" value= "<%= locals.PDFLink %>"><br>
-    Total Downloads:<input type="text" id="Total Downloads" value= "<%= locals.TotalDownloads %>"><br>
-    Citations:<input type="text" id="Citations" value= "<%= locals.Citations %>">
+<form id="myForm" action="/Post/preview" method="post"> 
+    Title: <input type="text" id="Title" ><br>
+    Link: <input type="text" id="Link" ><br>
+    Author: <input type="text" id="Author" ><br>
+    Published: <input type="text" id="Published" ><br>
+    PDF Link: <input type="text" id="PDF Link" ><br>
+    Abstract: <input type="text" id="Abstract" ><br>
+    Total Downloads: <input type="text" id="Total Downloads"><br>
+    Citations: <input type="text" id="Citations" >
     <input type="submit" value="View Tweet Preview">
   </form>
 </body>
 
 <script>
-    //function myFunction(x) {
-    //}
+    
     $(document).ready(function(){
       $( "tr" ).on("click", function(){
            var title =  $(this).find("td:eq(0)").text();
@@ -70,6 +70,7 @@ Supporting on-stack replacement in unstructured languages by loop Reconstruction
            var date =  $(this).find("td:eq(2)").text();
            $('input[id="Title"]').val(title );
            $('input[id="Link"]').val("unnamed");
+           $('input[id="Abstract"]').val("unnamed");
            $('input[id="Author"]').val(author);
            $('input[id="Published"]').val(date);
            $('input[id="PDF Link"]').val("unnamed");

@@ -17,8 +17,8 @@
    .posttweettacontainer{
     border-radius: 8px; border: 1px solid rgb(0, 132, 180); border-image: none; line-height: 20px; box-shadow: 0px 0px 0px 1px rgb(0, 132, 180); background-color: rgb(255, 255, 255);
    }
-   .posttweetta{
-    border-width: 1px 1px 0px; border-style: solid solid none; border-color: rgb(230, 236, 240) rgb(230, 236, 240) currentColor; margin: 0px; padding: 8px; outline: 0px; border-radius: 8px; border-image: none; width: 100%; height: 50px; font-family: "Segoe UI",Arial,sans-serif; font-size: 14px; box-sizing: border-box; opacity: 0.8; background-color: rgb(255, 255, 255);
+   .tweetarea{
+    border-width: 1px 1px 0px; border-style: solid solid none; border-color: rgb(230, 236, 240) rgb(230, 236, 240) currentColor; margin: 0px; padding: 8px; outline: 0px; border-radius: 8px; border-image: none; width: 80%; height: 300px; font-family: "Segoe UI",Arial,sans-serif; font-size: 14px; box-sizing: border-box; opacity: 0.8; background-color: rgb(255, 255, 255);
    }
    .posttweetcountcont{
     overflow: hidden; margin-top: 10px;
@@ -40,27 +40,42 @@
    }
     
  </style>
-         <script
-             src="https://code.jquery.com/jquery-3.2.1.min.js"
-             crossorigin="anonymous"></script>
-         <script src="profile.js"></script> 
+ <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
      </head>
      <body class="segoe" style="background: rgb(230, 236, 240);">
                      <div class="posttweetcontainer">
                          <img class="posttweetprofimg" src="data:image/jpeg;base64,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">
                          <div class="previewContainer">
                              <div class="posttweettacontainer">
-                                 <textarea id="posttweetta" class="posttweetta" placeholder="What's happening?"></textarea>
+                                <form id="myForm" action="/Post/makepost" method="post"> 
+
+                                 <textarea id="tweetarea" class="tweetarea" name="tweetarea" >
+<%= title %> - (<%= published %> ) by <%= author %> 
+<%= link %> 
+<%= abstract %> 
+                                    </textarea>
                                  <div class="posttweetcountcont">
                                      <span class="posttweetcount"><span id="totalchars">0</span>/250</span>
                                  </div>
+
                              </div>
                              <div class="posttweetbutcont">
                                  <button id="posttweetbut" class="posttweetbut">Tweet</button>
+                                </form>
                              </div>
                          </div>
                      </div>
-        Welcome <?php echo $_GET["Title"]; ?><br>
-        Your email address is: <?php echo $_GET["email"]; ?>
      </body>
+
+     <script>
+$( document ).ready(function() {
+    $("#tweetarea").keyup(function(){
+        $("#totalchars").text($(this).val().length);
+    });
+    $("form").submit(function(){
+        alert("Post Tweeted");
+    });
+});
+
+    </script>
 </html>

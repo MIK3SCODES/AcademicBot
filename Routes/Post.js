@@ -1,24 +1,38 @@
 var express = require('express');
-var router = express.Router();
 const API = require("../TwitAPI.js");
+var bodyParser = require('body-parser')
+var app = express()
+var router = express.Router()
 
 
 
-router.get('/', function (req, res) {
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+  router.get('/', function (req, res) {
     res.render('main.ejs')
   })
+  
 
-  router.get('/preview', function (req, res) {
-    res.render('preview.ejs')
-  })  
+ router.post('/preview',(req,res) => {
+    var Title = req.body.Title;
+    var Link = req.body.Link;
+    var Author = req.body.Author;
+    var Published = req.body.Published;
+    var Abstract = req.body.Abstract;
+    res.render('preview.ejs' , {'title': Title, 'link': Link , 'author': Author, 'published': Published, 'abstract': Abstract})
+});  
+
+  
    
-  router.post('/preview', function (req, res) {
-    API.postImage(req.body.caption, req.body.Location);
-    res.send('you just posted a tweet from js')
-  })
+ router.post('/makepost', function (req, res) {
+    API.postTweet(req.body.tweetarea);
+    //API.postImage(req.body.tweetarea, req.body.location); Name request variable location of image and uncomment and image will post
+   res.render('main.ejs')
+}); 
 
-  router.get("/:id", function (req, res) {
-    res.send(`test twitter post ${req.params.id}`)
-  })
 
+  
+  // add router in the Express app.
+  app.use("/", router);
   module.exports = router 

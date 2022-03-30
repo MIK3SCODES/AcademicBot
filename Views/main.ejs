@@ -98,6 +98,8 @@
     
 </body>
 <script>
+    $(document).ready(function () {
+        });
     $(document).ready(function(){
         showScheduled();
     });
@@ -140,16 +142,7 @@
                                     temp += "<td>" + u.TotalDownloads + "</td></tr>";
                                 });
                                 document.getElementById("data").innerHTML = temp;
-                                document.getElementById("test").innerHTML = abstract;//getting the innerHtml of the abstract.
-                            
-                          
-                     
-                     $("#test").show();
-                    const loc = this.getBoundingClientRect();
-                    $("#test").css('position','absolute');
-                    $("#test").css('left',loc.x);
-                    $("#test").css('top',loc.y);
-                                
+
               $( "tr" ).on("click", function(){
                 var title =  $(this).find("td:eq(0)").text();
                 var link =  $(this).find("td:eq(1)").text();
@@ -159,6 +152,16 @@
                 var abstract =  $(this).find("td:eq(5)").text();
                 var PDFLink =  $(this).find("td:eq(6)").text();
                 var totalDownloads =  $(this).find("td:eq(7)").text();
+                document.getElementById("test").innerHTML = abstract;//getting the innerHtml of the abstract.
+                            
+                          
+                     
+                     $("#test").show();
+                    const loc = this.getBoundingClientRect();
+                    $("#test").css('position','absolute');
+                    $("#test").css('left',loc.x);
+                    $("#test").css('top',loc.y);
+                                
                 $('input[id="Title"]').val(title );
                 $('input[id="Link"]').val(link);
                 $('input[id="Author"]').val(author);

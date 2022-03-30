@@ -20,7 +20,6 @@
             right: 10px;
             top: 5px;
         }
-
         input {
             width: 60%;
             margin: 8px 0;
@@ -41,11 +40,19 @@
         .table#myTable tr > *:nth-child(8){
             display: none;
         }
-        
+         div.testt{
+                display: none;
+                background-color: lightblue;
+                width: 500px;
+                border: 1px solid green;
+                padding: 50px;
+                margin: 20px;
+                text-align: center;
+            }
         
     </style>
   </head>
-
+<div id="test" class="testt"></div>
   <body style="height: 656px;margin: 0px;">
     <table  id = "myTable" class="table table-hover table-bordered results">
         <thead>
@@ -94,14 +101,12 @@
     $(document).ready(function(){
         showScheduled();
     });
-
     function showScheduled(){
         $.get( "../scheduledTweets.json", function( data ) {
         var items = [];
             $.each(data, function( key, val ) {
                 items.push( "<div position = relative; class = panel-heading> Tweet." + key +':' +  JSON.stringify(val.postDate) + "<button id = '+ key +' onclick = deleteScheduled() type='button' class='btn btn-danger'> X </button> </div>" );
                 items.push( "<div class = panel-body >" +  JSON.stringify(val.tweet) + "</div>" );
-
             });
             
             $( "<ul/>", {
@@ -110,7 +115,6 @@
             }).appendTo( "schedule" );
         });
     }
-
     function deleteScheduled(){
         //clearTimeout(id);
         console.log( getElementById('hidden-div'));
@@ -136,6 +140,16 @@
                                     temp += "<td>" + u.TotalDownloads + "</td></tr>";
                                 });
                                 document.getElementById("data").innerHTML = temp;
+                                document.getElementById("test").innerHTML = abstract;//getting the innerHtml of the abstract.
+                            
+                          
+                     
+                     $("#test").show();
+                    const loc = this.getBoundingClientRect();
+                    $("#test").css('position','absolute');
+                    $("#test").css('left',loc.x);
+                    $("#test").css('top',loc.y);
+                                
               $( "tr" ).on("click", function(){
                 var title =  $(this).find("td:eq(0)").text();
                 var link =  $(this).find("td:eq(1)").text();
@@ -160,6 +174,5 @@
             }
     );
 </script>
-
 
 </html>

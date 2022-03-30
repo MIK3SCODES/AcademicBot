@@ -1,116 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Bot Interface</title>
-        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-        <style>
-            input {
-                width: 60%;
-                margin: 8px 0;
-                box-sizing: border-box;
-            }
-            .table#myTable tr > *:nth-child(2){
-                display: none;
-            }
-            .table#myTable tr > *:nth-child(5){
-                display: none;
-            }
-            .table#myTable tr > *:nth-child(6){
-                display: none;
-            }
-            .table#myTable tr > *:nth-child(7){
-                display: none;
-            }
-            .table#myTable tr > *:nth-child(8){
-                display: none;
-            }
-        </style>
-    </head>
-    <body style="height: 656px;margin: 0px;">
-        <table id = "myTable" class="table table-hover table-bordered results">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th data-visible="false"> Link </th>
-                    <th>Authors</th>
-                    <th>Published </th>
-                    <th>Total Citations</th>
-                    <th>abstract</th>
-                    <th>PDF Link</th>
-                    <th>total Downloads</th>
-                </tr>
-            </thead>
 
-            <tbody id ="data">      
-            </tbody>
-          
-        </table>
-      
-         <style>
-          
-        </style>
-        <form id="myForm" action="/Post/preview" method="get"> 
-            Title:<input type="text" id="Title" ><br>
-            Link:<input type="text" id="Link" ><br>
-            Author:<input type="text" id="Author" ><br>
-            Published:<input type="text" id="Published"><br>
-            PDF Link:<input type="text" id="PDFLink"><br>
-            Total Downloads:<input type="text" id="TotalDownloads"><br>
-            Citations:<input type="text" id="Citations">            
-            <input type="submit" value="View Tweet Preview">
-        </form>
-    </body>
-    <script>
-        $(document).ready(function () {
-        });   
-    </script>
-    <script>
-        fetch("output.json").then(
-                response => {
-                    response.json().then(
-                            data => {  //everything to do with the data would be between thses {}
-                                console.log(data);
-                                if (data.length > 0) {
-                                    var temp = "";
-                                    data.forEach((u) => {
-                                        temp += "<tr>";
-                                        temp += "<td>" + u.Title + "</td>";
-                                        temp += "<td>" + u.Link + "</td>";
-                                        temp += "<td>" + u.Authors + "</td>";
-                                        temp += "<td>" + u.Published + "</td>";
-                                        temp += "<td>" + u.TotalCitations + "</td>";
-                                        temp += "<td class='hd'>" + u.abstractt + "</td>";
-                                        temp += "<td>" + u.pdfLink + "</td>";
-                                        temp += "<td>" + u.TotalDownloads + "</td></tr>";
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    <title>Bot Interface</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        input.hide {
+            visibility: hidden;
+        }
+        .panel-heading{
+            position: relative;
+        }
+        .panel-heading button{
+            position: absolute;
+            right: 10px;
+            top: 5px;
+        }
 
-                                    });
+        input {
+            width: 60%;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+        .table#myTable tr > *:nth-child(2){
+            display: none;
+        }
+        .table#myTable tr > *:nth-child(5){
+            display: none;
+        }
+        .table#myTable tr > *:nth-child(6){
+            display: none;
+        }
+        .table#myTable tr > *:nth-child(7){
+            display: none;
+        }
+        .table#myTable tr > *:nth-child(8){
+            display: none;
+        }
+        
+        
+    </style>
+  </head>
 
-                                    document.getElementById("data").innerHTML = temp;
-                                    $("tr").on("click", function () {
-                                        var title = $(this).find("td:eq(0)").text();
-                                        var link = $(this).find("td:eq(1)").text();
-                                        var author = $(this).find("td:eq(2)").text();
-                                        var date = $(this).find("td:eq(3)").text();
-                                        var TotalCitations = $(this).find("td:eq(4)").text();
-                                        var PDFLink = $(this).find("td:eq(6)").text();
-                                        var totalDownloads = $(this).find("td:eq(7)").text();
-                                        $('input[id="Title"]').val(title);
-                                        $('input[id="Link"]').val(link);
-                                        $('input[id="Author"]').val(author);
-                                        $('input[id="Published"]').val(date);
-                                        $('input[id="Citations"]').val(TotalCitations);
-                                        $('input[id="PDFLink"]').val(PDFLink);
-                                        $('input[id="TotalDownloads"]').val(totalDownloads);
-                                    });
+  <body style="height: 656px;margin: 0px;">
+    <table  id = "myTable" class="table table-hover table-bordered results">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Link</th>
+                <th>Authors</th>
+                <th>Published </th>
+                <th>Total Citations</th>
+                <th>abstract</th>
+                <th>PDF Link</th>
+                <th>total Downloads</th>
+            </tr>
+        </thead>
 
-                                }
+        <tbody id ="data">      
+        </tbody>
+    </table>
+    <div class="container">
+    <form id="myForm" action="/Post/preview" method="post"> 
+        <input class = hide type="text" id="Abstract" name="Abstract">
+      <p><label for="Title">Title:      </label>
+          <input type="text" id="Title" name="Title"><br>
+      <p><label for="Link">Link:        </label>
+          <input type="text" id="Link" name="Link"><br>
+      <p><label for="Author">Author:        </label>
+          <input type="text" id="Author" name="Author"><br>
+      <p><label for="Published">Published:      </label>
+          <input type="text" id="Published" name="Published"><br>
+      <p><label for="PDF Link">PDF Link:        </label>
+          <input type="text" id="PDF Link" name="PDF Link"><br>
+      <p><label for="Total Downloads">Total Downloads:      </label>
+          <input type="text" id="Total Downloads" name="Total Downloads"><br>
+      <p><label for="Citations">Citations:      </label>
+          <input type="text" id="Citations" name="Citations" >
+        <input type="submit" value="View Tweet Preview">
+      </form>
+    </div>
+        <h2 font-weight="bold"  font-size="large">Scheduled tweets:</h2>
+       <schedule>
 
-                            }
-                    );
-                }
-        );
-    </script>
+       </schedule>
+    
+</body>
+<script>
+    $(document).ready(function(){
+        showScheduled();
+    });
+
+    function showScheduled(){
+        $.get( "../scheduledTweets.json", function( data ) {
+        var items = [];
+            $.each(data, function( key, val ) {
+                items.push( "<div position = relative; class = panel-heading> Tweet." + key +':' +  JSON.stringify(val.postDate) + "<button id = '+ key +' onclick = deleteScheduled() type='button' class='btn btn-danger'> X </button> </div>" );
+                items.push( "<div class = panel-body >" +  JSON.stringify(val.tweet) + "</div>" );
+
+            });
+            
+            $( "<ul/>", {
+                "class": "panel-primary",
+                html: items.join( "" )
+            }).appendTo( "schedule" );
+        });
+    }
+
+    function deleteScheduled(){
+        //clearTimeout(id);
+        console.log( getElementById('hidden-div'));
+    }
+</script>
+<script>
+    fetch("/output.json").then( 
+            response => {
+                response.json().then(
+                        data => {  //everything to do with the data would be between thses {}
+                            console.log(data);
+                            if (data.length > 0) {
+                                var temp = "";
+                                data.forEach((u) => {
+                                    temp += "<tr>";
+                                    temp += "<td>" + u.Title + "</td>";
+                                    temp += "<td>" + u.Link + "</td>";
+                                    temp += "<td>" + u.Authors + "</td>";
+                                    temp += "<td>" + u.Published + "</td>";
+                                    temp += "<td>" + u.TotalCitations + "</td>";
+                                    temp += "<td>" + u.abstractt + "</td>";
+                                    temp += "<td>" + u.pdfLink + "</td>";
+                                    temp += "<td>" + u.TotalDownloads + "</td></tr>";
+                                });
+                                document.getElementById("data").innerHTML = temp;
+              $( "tr" ).on("click", function(){
+                var title =  $(this).find("td:eq(0)").text();
+                var link =  $(this).find("td:eq(1)").text();
+                var author =  $(this).find("td:eq(2)").text();
+                var date =  $(this).find("td:eq(3)").text();
+                var TotalCitations =  $(this).find("td:eq(4)").text();
+                var abstract =  $(this).find("td:eq(5)").text();
+                var PDFLink =  $(this).find("td:eq(6)").text();
+                var totalDownloads =  $(this).find("td:eq(7)").text();
+                $('input[id="Title"]').val(title );
+                $('input[id="Link"]').val(link);
+                $('input[id="Author"]').val(author);
+                $('input[id="Published"]').val(date);
+                $('input[id="Citations"]').val(TotalCitations);
+                $('input[id="Abstract"]').val(abstract);
+                $('input[id="PDF Link"]').val(PDFLink);
+                $('input[id="Total Downloads"]').val(totalDownloads);  
+                });                    
+            }
+            }
+            );
+            }
+    );
+</script>
+
 
 </html>
